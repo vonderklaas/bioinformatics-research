@@ -1,3 +1,4 @@
+# Testing functions from DNAToolkit.py
 from DNAToolkit import *
 import random
 
