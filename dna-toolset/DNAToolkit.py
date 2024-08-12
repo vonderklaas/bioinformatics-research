@@ -1,6 +1,5 @@
-Nucleotides = ["A", "C", "G", "T"]
+from structures import *
 
-# Check the sequence to make sure it is a valid DNA string
 def validateSeq(dna_seq):
     tmpseq = dna_seq.upper()
     for nuc in tmpseq:
@@ -8,10 +7,7 @@ def validateSeq(dna_seq):
             return False
     return tmpseq
 
-# Count the frequency of DNA nucleotides in the sequence
 def countNucFrequency(seq):
-    # import collections
-    # return dict(collections.Counter(seq))
     tmpFreqDict = {
         "A": 0,
         "C": 0,
@@ -21,3 +17,21 @@ def countNucFrequency(seq):
     for nuc in seq:
         tmpFreqDict[nuc] += 1
     return tmpFreqDict
+
+def transcription(seq):
+    """
+    DNA -> RNA Transcription.
+    Replaces T with Uracil
+    """
+    return seq.replace("T", "U")
+
+def reverse_complement(seq):
+    """
+    Swapping A with T and G with C.
+    Reversing newly generated string.
+    """
+    complement_list = []
+    for nuc in seq:
+        complement_list.append(DNA_ReverseComplement[nuc])
+    complement_string = ''.join(complement_list)
+    return complement_string[::-1]
