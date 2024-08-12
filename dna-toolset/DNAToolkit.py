@@ -30,8 +30,24 @@ def reverse_complement(seq):
     Swapping A with T and G with C.
     Reversing newly generated string.
     """
-    complement_list = []
-    for nuc in seq:
-        complement_list.append(DNA_ReverseComplement[nuc])
-    complement_string = ''.join(complement_list)
-    return complement_string[::-1]
+    # complement_list = []
+    # for nuc in seq:
+    #     complement_list.append(DNA_ReverseComplement[nuc])
+    # complement_string = ''.join(complement_list)
+    # return complement_string[::-1]
+    
+    mapping = str.maketrans("ATCG", "TAGC")
+    return seq.translate(mapping)[::-1]
+
+def gc_content(seq):
+    return round((seq.count('C') + seq.count('G')) / len(seq) * 100)
+
+def gc_content_subsec(seq, k=20):
+    """
+    GC Content in DNA/RNA sub-sequence length k (20 by default)
+    """
+    res = []
+    for i in range(0, len(seq) - k + 1, k):
+        subseq = seq[i:i + k]
+        res.append(gc_content(subseq))
+    return res
